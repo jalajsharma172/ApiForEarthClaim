@@ -4,10 +4,10 @@ const { validateTokenData, handleValidationErrors } = require('../middleware/val
 const { insertTokenData, getAllTokens, getTokenById } = require('../services/tokenService');
 
 /**
- * POST /api/tokens
+ * POST /
  * Create a new token record
  */
-router.post('/tokens', validateTokenData, handleValidationErrors, async (req, res) => {
+router.post('/', validateTokenData, handleValidationErrors, async (req, res) => {
     try {
         const { recipient, tokenURI, tokenId } = req.body;
         
@@ -41,7 +41,7 @@ router.post('/tokens', validateTokenData, handleValidationErrors, async (req, re
 });
 
 /**
- * GET /api/tokens
+ * GET /tokens
  * Get all token records
  */
 router.get('/tokens', async (req, res) => {
@@ -73,7 +73,7 @@ router.get('/tokens', async (req, res) => {
 });
 
 /**
- * GET /api/tokens/:id
+ * GET /tokens/:id
  * Get a specific token record by ID
  */
 router.get('/tokens/:id', async (req, res) => {
