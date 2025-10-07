@@ -1,18 +1,22 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "./api/index.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
     }
-  ],
+  },
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/token",
+      "dest": "/api/token.js"
+    },
+    {
+      "src": "/api/tokens", 
+      "dest": "/api/tokens.js"
+    },
+    {
+      "src": "/",
       "dest": "/api/index.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }

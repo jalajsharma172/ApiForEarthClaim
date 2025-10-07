@@ -29,7 +29,7 @@
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            max-width: 700px;
             width: 90%;
         }
         
@@ -67,6 +67,7 @@
             border-radius: 8px;
             margin: 1rem 0;
             font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
         }
         
         .method {
@@ -90,6 +91,13 @@
             margin-bottom: 1rem;
         }
         
+        .highlight {
+            background-color: rgba(255, 255, 0, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
         .footer {
             margin-top: 2rem;
             opacity: 0.7;
@@ -110,7 +118,7 @@
             
             <div class="endpoint">
                 <span class="method post">POST</span>
-                <strong>/api/</strong> - Create new token record
+                <strong class="highlight">/api/token</strong> - Insert new token info
             </div>
             
             <div class="endpoint">
@@ -122,22 +130,47 @@
                 <span class="method get">GET</span>
                 <strong>/api/tokens/:id</strong> - Get token by ID
             </div>
+
+            <div class="endpoint">
+                <span class="method get">GET</span>
+                <strong>/health</strong> - API health check
+            </div>
         </div>
         
         <div class="api-info">
-            <h3>📋 Example Request:</h3>
+            <h3>📋 Insert Token Info Request:</h3>
             <div class="endpoint">
-                POST /api/<br>
+                POST <strong class="highlight">/api/token</strong><br>
+                Content-Type: application/json<br><br>
                 {<br>
-                &nbsp;&nbsp;"recipient": "0x123...",<br>
-                &nbsp;&nbsp;"tokenURI": "https://...",<br>
+                &nbsp;&nbsp;"recipient": "0x1234...abcd",<br>
+                &nbsp;&nbsp;"tokenURI": "https://example.com/metadata.json",<br>
                 &nbsp;&nbsp;"tokenId": "12345"<br>
+                }
+            </div>
+        </div>
+
+        <div class="api-info">
+            <h3>✅ Expected Response:</h3>
+            <div class="endpoint">
+                Status: 201 Created<br><br>
+                {<br>
+                &nbsp;&nbsp;"success": true,<br>
+                &nbsp;&nbsp;"message": "Token data inserted successfully",<br>
+                &nbsp;&nbsp;"data": {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"id": 1,<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"recipient": "0x1234...abcd",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"tokenURI": "https://...",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"tokenId": "12345",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"created_at": "2025-10-07T..."<br>
+                &nbsp;&nbsp;}<br>
                 }
             </div>
         </div>
         
         <div class="footer">
             <p>🔗 Connected to Supabase Database</p>
+            <p>📊 Table: SaveTokenInfo</p>
             <p>Built with Express.js & Node.js</p>
         </div>
     </div>

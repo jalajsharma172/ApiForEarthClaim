@@ -63,17 +63,22 @@ app.use('*', (req, res) => {
     });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log('🚀 Token API Server Started Successfully!');
-    console.log(`📍 Server running on: http://localhost:${PORT}`);
-    console.log(`🌐 Home page: http://localhost:${PORT}`);
-    console.log(`❤️ Health check: http://localhost:${PORT}/health`);
-    console.log(`📡 API base URL: http://localhost:${PORT}/api`);
-    console.log('📊 Environment:', process.env.NODE_ENV || 'development');
-    console.log('🔗 Database: Connected to Supabase');
-    console.log('⭐ Ready to accept requests!');
-});
+// Only start server if not in production (Vercel handles this)
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log('🚀 Token API Server Started Successfully!');
+        console.log(`📍 Server running on: http://localhost:${PORT}`);
+        console.log(`🌐 Home page: http://localhost:${PORT}`);
+        console.log(`❤️ Health check: http://localhost:${PORT}/health`);
+        console.log(`📡 Main API: http://localhost:${PORT}/api/token`);
+        console.log(`📡 Get tokens: http://localhost:${PORT}/api/tokens`);
+        console.log('📊 Environment:', process.env.NODE_ENV || 'development');
+        console.log('🔗 Database: Connected to Supabase (SaveTokenInfo table)');
+        console.log('⭐ Ready to accept requests!');
+    });
+}
+
+module.exports = app;
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
@@ -85,5 +90,3 @@ process.on('SIGINT', () => {
     console.log('SIGINT received, shutting down gracefully');
     process.exit(0);
 });
-
-module.exports = app;
