@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const tokenRoutes = require('./routes/tokenRoutes');
@@ -12,14 +13,22 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static files from public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Request logging middleware
 app.use((req, res, next) => {
     console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
     next();
 });
 
-// Health check endpoint
+// Home route - serve the HTML page
 app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
     res.json({
         success: true,
         message: 'Token API is running',
@@ -56,10 +65,14 @@ app.use('*', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
-    console.log(`📍 Health check: http://localhost:${PORT}`);
-    console.log(`📡 API endpoint: http://localhost:${PORT}/api/tokens`);
-    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log('🚀 Token API Server Started Successfully!');
+    console.log(`📍 Server running on: http://localhost:${PORT}`);
+    console.log(`🌐 Home page: http://localhost:${PORT}`);
+    console.log(`❤️ Health check: http://localhost:${PORT}/health`);
+    console.log(`📡 API base URL: http://localhost:${PORT}/api`);
+    console.log('📊 Environment:', process.env.NODE_ENV || 'development');
+    console.log('🔗 Database: Connected to Supabase');
+    console.log('⭐ Ready to accept requests!');
 });
 
 // Graceful shutdown

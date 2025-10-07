@@ -13,12 +13,12 @@ async function insertTokenData(tokenData) {
         const { recipient, tokenURI, tokenId } = tokenData;
         
         const { data, error } = await supabase
-            .from('Tokens')
+            .from('tokens')
             .insert([
                 {
                     recipient: recipient,
-                    tokenURI: tokenURI, // Note: using snake_case for database column
-                    tokenId: tokenId    // Note: using snake_case for database column
+                    tokenURI: tokenURI,
+                    tokenId: tokenId
                 }
             ])
             .select();

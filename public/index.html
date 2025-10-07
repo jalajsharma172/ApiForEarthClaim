@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token API - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .api-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .endpoint {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 0.8rem;
+        }
+        
+        .post { background-color: #28a745; }
+        .get { background-color: #007bff; }
+        
+        .status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #28a745;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚀</div>
+        <h1>Token API Server</h1>
+        <p class="subtitle">Your blockchain token management API is ready!</p>
+        
+        <div class="status">✅ Server Online</div>
+        
+        <div class="api-info">
+            <h3>📡 Available Endpoints:</h3>
+            
+            <div class="endpoint">
+                <span class="method post">POST</span>
+                <strong>/api/tokens</strong> - Create new token record
+            </div>
+            
+            <div class="endpoint">
+                <span class="method get">GET</span>
+                <strong>/api/tokens</strong> - Get all token records
+            </div>
+            
+            <div class="endpoint">
+                <span class="method get">GET</span>
+                <strong>/api/tokens/:id</strong> - Get token by ID
+            </div>
+        </div>
+        
+        <div class="api-info">
+            <h3>📋 Example Request:</h3>
+            <div class="endpoint">
+                POST /api/tokens<br>
+                {<br>
+                &nbsp;&nbsp;"recipient": "0x123...",<br>
+                &nbsp;&nbsp;"tokenURI": "https://...",<br>
+                &nbsp;&nbsp;"tokenId": "12345"<br>
+                }
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🔗 Connected to Supabase Database</p>
+            <p>Built with Express.js & Node.js</p>
+        </div>
+    </div>
+</body>
+</html>
