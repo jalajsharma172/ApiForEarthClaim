@@ -13,7 +13,7 @@ async function insertTokenData(tokenData) {
         const { recipient, tokenURI, tokenId } = tokenData;
         
         const { data, error } = await supabase
-            .from('tokens')
+            .from('SaveTokenInfo')
             .insert([
                 {
                     recipient: recipient,
@@ -50,7 +50,7 @@ async function insertTokenData(tokenData) {
 async function getAllTokens() {
     try {
         const { data, error } = await supabase
-            .from('tokens')
+            .from('SaveTokenInfo')
             .select('*')
             .order('created_at', { ascending: false });
 
@@ -82,7 +82,7 @@ async function getAllTokens() {
 async function getTokenById(id) {
     try {
         const { data, error } = await supabase
-            .from('tokens')
+            .from('SaveTokenInfo')
             .select('*')
             .eq('id', id)
             .single();
